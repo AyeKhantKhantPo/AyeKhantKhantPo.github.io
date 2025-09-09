@@ -1,13 +1,441 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AKKP Portfolio</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aye Khant Khant Po - Software Engineer Portfolio showcasing expertise in Python, ReactJS, AWS, and ISP OSS development.">
+    <meta name="keywords" content="software engineer, Python, ReactJS, AWS, portfolio, ISP OSS, data analytics">
+    <title>Aye Khant Khant Po | Software Engineer Portfolio</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #4a3c5e;
+            background-color: #fff5f7;
+        }
+
+        header {
+            background: linear-gradient(135deg, #f9c1d3, #d4c1e9);
+            color: #4a3c5e;
+            padding: 3rem 1rem;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            font-family: 'Georgia', serif;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #a8e6cf;
+            color: #4a3c5e;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #8cd1b5;
+            transform: scale(1.1) translateY(-3px);
+        }
+
+        nav {
+            background: #d4c1e9;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #4a3c5e;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #f06292;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-in forwards;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #f06292;
+            border-bottom: 2px solid #f8bbd0;
+            padding-bottom: 0.5rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .about {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            background: #fce4ec;
+            padding: 2rem;
+            border-radius: 10px;
+        }
+
+        .about img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid #f8bbd0;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .about img:hover {
+            transform: scale(1.05);
+        }
+
+        .about p {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            color: #f06292;
+        }
+
+        .project-card p {
+            margin-bottom: 1rem;
+        }
+
+        .project-card a {
+            color: #a8e6cf;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .project-card a:hover {
+            text-decoration: underline;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill {
+            background: #d4c1e9;
+            color: #4a3c5e;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .skill:hover {
+            transform: scale(1.1);
+        }
+
+        .experience-item, .education-item, .certification-item {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-item h3, .education-item h3, .certification-item h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            color: #f06292;
+        }
+
+        .testimonials {
+            background: #fce4ec;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonials p {
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #f9c1d3, #d4c1e9);
+            color: #4a3c5e;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer a {
+            color: #a8e6cf;
+            text-decoration: none;
+            margin: 0 0.5rem;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        footer .social-links i {
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        footer .social-links i:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section:nth-child(1) { animation-delay: 0.2s; }
+        section:nth-child(2) { animation-delay: 0.4s; }
+        section:nth-child(3) { animation-delay: 0.6s; }
+        section:nth-child(4) { animation-delay: 0.8s; }
+        section:nth-child(5) { animation-delay: 1s; }
+        section:nth-child(6) { animation-delay: 1.2s; }
+        section:nth-child(7) { animation-delay: 1.4s; }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .about {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Aye Khant Khant Po</h1>
+        <p>Software Engineer | Python & ReactJS | AWS Certified (SAA-C03) | ISP OSS Specialist</p>
+        <a href="Aye_Khant_Khant_Po_Resume_2025.pdf" class="cta-button" download>Download Resume</a>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section id="about" class="about">
+            <h2>About Me</h2>
+            <img src="https://media.licdn.com/dms/image/v2/D5603AQG9no-jWJDncw/profile-displayphoto-scale_400_400/B56Zj7aOoFHkAg-/0/1756564616131?e=1760572800&v=beta&t=Vmb_aTPsNUKXAy8ab3zm-nrwUgvwcSPX_9fzEwCEtDo" alt="Aye Khant Khant Po headshot">
+            <p>Enthusiastic Software Engineer with over 4 years of experience in Python and ReactJS, specializing in ISP Operational Support Systems (OSS). I have a proven track record in delivering high-quality, scalable code for controller systems, with expertise in backend API and frontend development. I thrive in mentoring small teams and am passionate about cloud technology, data analytics, DevOps, and AI.</p>
+            <p>Based in Malaysia, I enjoy tackling complex challenges and driving innovation through clean code and user-centric solutions. My goal is to build impactful systems that enhance business efficiency and user experience.</p>
+        </section>
+
+        <section id="projects" class="projects">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Business Intelligence Portal">
+                    <h3>Business Intelligence Portal</h3>
+                    <p>Developed a portal with interactive data visualizations for marketing and business teams, using ReactJS, Flask, and MongoDB. Integrated Wazuh for security monitoring and MailHog for email alerts, with logs stored in PostgreSQL.</p>
+                    <p><strong>Technologies:</strong> ReactJS, Flask, MongoDB, PostgreSQL, Wazuh, MailHog</p>
+                    <p><a href="https://github.com/ayekhantkhantpo/bi-portal" target="_blank">GitHub</a> | <a href="https://bi-portal.example.com" target="_blank">Live Demo</a></p>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/300x200" alt="AI-Powered Email Alerts">
+                    <h3>AI-Powered Email Alerts</h3>
+                    <p>Integrated Deepseek API and Gemini Google for automated email alerts based on system logs, enhancing monitoring efficiency. Updated Flutter UI to support Llama 3.2 Vision AI for image-based querying via Ollama API.</p>
+                    <p><strong>Technologies:</strong> Python, Flutter, Deepseek API, Gemini Google, Ollama API</p>
+                    <p><a href="https://github.com/ayekhantkhantpo/ai-alerts" target="_blank">GitHub</a></p>
+                </div>
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/300x200" alt="OSS Automation Scripts">
+                    <h3>OSS Automation Scripts</h3>
+                    <p>Built automated scripts to simplify common OSS tasks, reducing manual effort by 40%. Utilized Python, RabbitMQ, and Redis to optimize processing time for operational workflows.</p>
+                    <p><strong>Technologies:</strong> Python, RabbitMQ, Redis</p>
+                    <p><a href="https://github.com/ayekhantkhantpo/oss-scripts" target="_blank">GitHub</a></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <h2>Skills</h2>
+            <div class="skills-list">
+                <span class="skill">Python</span>
+                <span class="skill">ReactJS</span>
+                <span class="skill">FastAPI</span>
+                <span class="skill">MongoDB</span>
+                <span class="skill">PostgreSQL</span>
+                <span class="skill">Docker</span>
+                <span class="skill">AWS</span>
+                <span class="skill">GitLab CI</span>
+                <span class="skill">RabbitMQ</span>
+                <span class="skill">Redis</span>
+                <span class="skill">Flask</span>
+                <span class="skill">Grafana</span>
+                <span class="skill">InfluxDB</span>
+            </div>
+        </section>
+
+        <section id="experience" class="experience">
+            <h2>Experience</h2>
+            <div class="experience-item">
+                <h3>Full Stack Developer | nPro (Dec 2024–Present)</h3>
+                <p>Developed and maintained a business intelligence portal with interactive data visualizations for marketing and business teams using ReactJS, Flask, and MongoDB. Implemented Wazuh for security monitoring and MailHog for email alerts, with logs stored in PostgreSQL. Integrated Deepseek API and Gemini Google for automated email alerts and updated Flutter UI for Llama 3.2 Vision AI.</p>
+                <p><strong>Technologies:</strong> ReactJS, Flask, MongoDB, PostgreSQL, Wazuh, MailHog, Deepseek API, Gemini Google, Flutter, Ollama API</p>
+            </div>
+            <div class="experience-item">
+                <h3>Senior Software Engineer | Frontiir (Apr 2022–Dec 2024)</h3>
+                <p>Managed containerization with Linux, GitLab CI, and Docker for efficient application deployment. Conducted code reviews, mentored junior developers, and facilitated cross-functional team coordination to ensure on-time project delivery.</p>
+                <p><strong>Technologies:</strong> Linux, GitLab CI, Docker, FastAPI, MongoDB</p>
+            </div>
+            <div class="experience-item">
+                <h3>Software Engineer | Frontiir (Sep 2019–Apr 2022)</h3>
+                <p>Collaborated on OSS projects using ReactJS, FastAPI, MongoDB, Web2py, Starlette, and Tornado. Improved database performance by 50% through query optimization and indexing. Implemented RabbitMQ and Redis to reduce processing time and developed automation scripts.</p>
+                <p><strong>Technologies:</strong> ReactJS, FastAPI, MongoDB, Web2py, Starlette, Tornado, RabbitMQ, Redis, InfluxDB, Grafana</p>
+            </div>
+            <div class="experience-item">
+                <h3>NOC Engineer | Frontiir (Apr 2018–Aug 2019)</h3>
+                <p>Monitored performance and capacity of the Street By Street (SBS) backhaul network, resolving incidents to minimize downtime. Analyzed data utilization and handled daily complaints, RT, and ERP tickets.</p>
+                <p><strong>Technologies:</strong> Network Monitoring, Remote Troubleshooting</p>
+            </div>
+        </section>
+
+        <section id="education" class="education">
+            <h2>Education</h2>
+            <div class="education-item">
+                <h3>Bachelor's Degree, Computer Science | University of Computer Studies, Mandalay (Dec 2012–Dec 2017)</h3>
+                <p>Graduated with a 3.5 GPA, gaining a strong foundation in computer science principles, programming, and software development.</p>
+                <p><strong>Skills:</strong> HTML, CSS, Python, JavaScript</p>
+            </div>
+        </section>
+
+        <section id="certifications" class="certifications">
+            <h2>Certifications</h2>
+            <div class="certification-item">
+                <h3>AWS AI & ML Programming with Python Nanodegree | Udacity (Oct 2024)</h3>
+                <p>Completed specialized training in AI and machine learning programming using Python and PyTorch.</p>
+                <p><strong>Skills:</strong> Python, PyTorch, Machine Learning, AWS</p>
+            </div>
+            <div class="certification-item">
+                <h3>EF SET English Certificate (C1 Advanced) | EF SET (Sep 2024)</h3>
+                <p>Achieved a C1 Advanced level certification, demonstrating proficiency in professional English communication.</p>
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <h2>Testimonials</h2>
+            <p>"Aye Khant delivered a highly efficient BI portal, showcasing strong technical and leadership skills." — Jane Doe, Product Manager at nPro</p>
+            <p>"Her expertise in Python and ReactJS, combined with a collaborative mindset, made her a key contributor." — Mike Smith, Senior Engineer at Frontiir</p>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Contact</h2>
+            <p>Email: <a href="mailto:ayekhantkhantpo@example.com">ayekhantkhantpo@example.com</a></p>
+            <p>Location: Malaysia</p>
+            <p>Let's connect: <a href="https://linkedin.com/in/ayekhantkhantpo" target="_blank">LinkedIn</a> | <a href="https://github.com/ayekhantkhantpo" target="_blank">GitHub</a></p>
+            <p><a href="https://calendly.com/ayekhantkhantpo" target="_blank" class="cta-button">Schedule a Call</a></p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Aye Khant Khant Po. All rights reserved.</p>
+        <p class="social-links">
+            <a href="https://linkedin.com/in/ayekhantkhantpo" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/ayekhantkhantpo" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="Aye_Khant_Khant_Po_Resume_2025.pdf" download><i class="fas fa-file-download"></i> Resume</a>
+        </p>
+    </footer>
+</body>
 </html>
